@@ -12,13 +12,16 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import { login } from "../client";
 import Swal from 'sweetalert2'
+import PasswordModal from "../components/passwordModal";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [modal, setModal] = useState(false)
   const history = useHistory()
   return (
     <MDBContainer>
+      <PasswordModal isOpen={modal} toggle={() => setModal(!modal)} />
       <MDBRow center className="mt-5 pt-5">
         <MDBCol md="6" xs="8" sm="8">
           <MDBCard>
@@ -30,7 +33,7 @@ const Login = () => {
                 getValue={value => setEmail(value)}
                 type="email"
                 icon="envelope"
-                label="Email here"
+                label="Email"
               />
               <MDBInput
                 getValue={value => setPassword("password")}
@@ -45,7 +48,7 @@ const Login = () => {
                     if (!email || !password) {
                       Swal.fire(
                         "Oops",
-                        "Check that all the fields are filled in",
+                        "Verifica di aver riempito tutti i campi",
                         "error"
                       );
                       return;
@@ -61,9 +64,9 @@ const Login = () => {
                     });
                   }}
                 >
-                  Submit
+                  Invia
                 </MDBBtn>{" "}
-                or <Link to="/register">Create an account</Link>
+                o <Link to="/register">Crea un account</Link> <span onClick={() => setModal(!modal)}>Password Dimenticata ?</span>
               </div>
             </MDBCardBody>
           </MDBCard>

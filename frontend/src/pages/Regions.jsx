@@ -39,7 +39,7 @@ const Regions = () => {
 					{regions.map((r, index) => (
 						<tr key={r._id}>
 							<td>{r.name}</td>
-							<td>{r.population}</td>
+							<td>{r.population.toLocaleString("fr-FR")}</td>
 							<td><MDBBtn floating flat color="primary" onClick={() => {
 								setRegionIndex(index)
 								setUpdateModal(!updateModal)

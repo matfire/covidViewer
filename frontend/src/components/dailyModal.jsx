@@ -13,6 +13,7 @@ const DailyModal = ({isOpen, toggle, update}) => {
 	const [healed, setHealed] = useState(0)
 	const [positives, setPositives] = useState(0)
 	const [rea, setRea] = useState(0)
+	const [isolated, setIsolated] = useState(0)
 	const [tampons, setTampons] = useState(0)
 
 	useEffect(() => {
@@ -32,26 +33,29 @@ const DailyModal = ({isOpen, toggle, update}) => {
 		<MDBModal isOpen={isOpen}toggle={() => toggle()}>
 			<MDBModalHeader toggle={() => toggle()}>Daily</MDBModalHeader>
 			<MDBModalBody>
-				<MDBDatePicker getValue={(value) => setDate(value)} />
-				<MDBSelect getValue={(v) => setRegion(v)} selected="Choose the region"  options={regions} search/>
+				<MDBDatePicker autoOk getValue={(value) => setDate(value)} />
+				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search/>
 				<MDBRow>
 					<MDBCol md="6" sm="12">
-						<MDBInput type="number" getValue={(v) => setDead(v)} label="Deads" />
+						<MDBInput type="number" getValue={(v) => setPositives(v)} label="Positivi" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
-						<MDBInput type="number" getValue={(v) => setAdmissions(v)} label="Admissions" />
+						<MDBInput type="number" getValue={(v) => setIsolated(v)} label="Isolamento" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
-						<MDBInput type="number" getValue={(v) => setHealed(v)} label="Healed" />
+						<MDBInput type="number" getValue={(v) => setAdmissions(v)} label="Ricoverati" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
-						<MDBInput type="number" getValue={(v) => setPositives(v)} label="Positives" />
+						<MDBInput type="number" getValue={(v) => setRea(v)} label="Rea" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
-						<MDBInput type="number" getValue={(v) => setRea(v)} label="Reanimations" />
+						<MDBInput type="number" getValue={(v) => setDead(v)} label="Deceduti" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
-						<MDBInput type="number" getValue={(v) => setTampons(v)} label="Swobs" />
+						<MDBInput type="number" getValue={(v) => setHealed(v)} label="Guariti" />
+					</MDBCol>
+					<MDBCol md="6" sm="12">
+						<MDBInput type="number" getValue={(v) => setTampons(v)} label="Tamponi" />
 					</MDBCol>
 				</MDBRow>
 			</MDBModalBody>
@@ -60,11 +64,11 @@ const DailyModal = ({isOpen, toggle, update}) => {
 					toggle()
 				}}>Close</MDBBtn>
 				<MDBBtn color="primary" onClick={() => {
-					if (dead < 0 || admissions <  0|| healed < 0  || positives < 0 || rea < 0 || tampons < 0 || !region) {
+					if (dead < 0 || admissions <  0|| healed < 0  || positives < 0 || rea < 0 || tampons < 0 || isolated < 0 || !region) {
 						Swal.fire("Oops!", "Please fill in all the fields", "error")
 						return
 					}
-					createDaily({date, dead, admissions, healed, positives, rea, tampons, region}).then(() => {
+					createDaily({date, dead, admissions, healed, positives, rea, tampons, region, isolated}).then(() => {
 						update()
 						toggle()
 					})

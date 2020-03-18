@@ -7,13 +7,12 @@ const Footer = () => {
         position: "absolute",
         bottom: 0,
         width: "100%",
-        backgroundColor: "black"
+        backgroundColor: "cray"
       }}
     >
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright:{" "}
-          <a href="https://www.mdbootstrap.com"> MDBootstrap.com </a>
+          &copy; {new Date().getFullYear()} Copyright{" "}
         </MDBContainer>
       </div>
     </div>

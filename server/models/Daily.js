@@ -8,7 +8,8 @@ const Daily = mongoose.model("daily", new mongoose.Schema({
 	healed: Number,
 	positives: Number,
 	rea: Number,
-	tampons: Number
+	tampons: Number,
+	isolated: Number
 }))
 
 module.exports = Daily

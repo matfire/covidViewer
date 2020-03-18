@@ -56,6 +56,16 @@ app.post("/login", async(req, res) => {
 	}
 })
 
+app.post("/password/change", async(req, res) => {
+	const {email, password} = req.body
+
+	const user = await User.find({email})
+	if (!user) res.json({type:"error", message:"no user found"})
+	user.password = bcrypt.hashSync(password, 12)
+	await user.save()
+	res.json({type:"success", message:"password modified"})
+})
+
 const isAuthenticated = async(req, res, next) => {
 	let token = req.headers.authentication || req.headers.Authetication || req.headers.Authorization || req.headers.authorization || ""
 	if (token === "")
@@ -67,7 +77,7 @@ const isAuthenticated = async(req, res, next) => {
 // region management
 
 app.get("/regions", isAuthenticated ,async(req, res) => {
-	const regions = await Region.find()
+	const regions = await Region.find().sort("name")
 	res.json({regions})
 })
 

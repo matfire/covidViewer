@@ -6,13 +6,17 @@ import Home from './pages/Home'
 import Regions from './pages/Regions'
 import Daily from './pages/Daily'
 
+const AuthedRoute = ({path, exact, component}) => {
+	return localStorage.getItem("jwt") ? <Route path={path} exact={exact} component={component} /> : <Redirect to="/login" />
+}
+
 const Router = () => {
 	return (
 		<Switch>
 			<Route path="/login" component={Login} />
-			<Route path="/" exact component={Home} />
-			<Route path="/region" exact component={Regions} />
-			<Route path="/daily" exact component={Daily} />
+			<AuthedRoute path="/" exact component={Home} />
+			<AuthedRoute path="/region" exact component={Regions} />
+			<AuthedRoute path="/daily" exact component={Daily} />
 			<Route path="/register" component={Register} />
 			<Redirect to="/login" />
 		</Switch>

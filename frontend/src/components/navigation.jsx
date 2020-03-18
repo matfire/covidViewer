@@ -11,11 +11,12 @@ import {
   MDBNavItem,
   MDBNavLink
 } from "mdbreact";
+import {useHistory} from 'react-router-dom'
 
 const Navigation = () => {
   const [collapse1, setCo1] = useState(false);
   const [collapseID, setCoID] = useState("");
-
+  const history = useHistory()
   const toggleCollapse = id => {
     setCoID(id);
   };
@@ -26,7 +27,9 @@ const Navigation = () => {
     <MDBNavbar color="light-blue" light>
       <MDBContainer>
         <MDBNavbarBrand>
-          <span className="text-white">Covid-19</span>
+          <span className="text-white" onClick={() => {
+            history.push("/")
+          }}>Covid-19</span>
         </MDBNavbarBrand>
         <MDBHamburgerToggler
           color="white"
