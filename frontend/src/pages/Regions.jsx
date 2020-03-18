@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {MDBContainer, MDBDataTable, MDBTable, MDBTableHead, MDBTableBody, MDBTableFoot, MDBBtn, MDBIcon} from 'mdbreact'
+import {MDBContainer, MDBDataTable, MDBTable, MDBTableHead, MDBTableBody, MDBTableFoot, MDBBtn, MDBIcon,MDBRow,MDBCol} from 'mdbreact'
 import { getRegions } from '../client'
 import RegionModal from '../components/regionModal'
 import RegionUpdate from '../components/regionUpdate'
@@ -15,6 +15,9 @@ const Regions = () => {
 	}, [])
 	return (
 		<MDBContainer>
+			<MDBRow>
+			<MDBCol md="6" className="offset-md-3">
+			<h4 className="text-center grey-text pt-3 mt-5 mb-5">REGIONI</h4>
 			<RegionModal isOpen={modal} toggle={() => setModal(!modal)} update={() => {
 						getRegions().then((res) => {
 							setRegions(res.data.regions)
@@ -30,8 +33,8 @@ const Regions = () => {
 			<MDBTable>
 				<MDBTableHead>
 					<tr>
-						<th>Name</th>
-						<th>Population</th>
+						<th>Regioni</th>
+						<th>Popolazione</th>
 						<th></th>
 					</tr>
 				</MDBTableHead>
@@ -40,19 +43,22 @@ const Regions = () => {
 						<tr key={r._id}>
 							<td>{r.name}</td>
 							<td>{r.population.toLocaleString("fr-FR")}</td>
-							<td><MDBBtn floating flat color="primary" onClick={() => {
+							<td align="center"><MDBIcon icon="edit" size="lg" className="grey-text" onClick={() => {
 								setRegionIndex(index)
 								setUpdateModal(!updateModal)
-							}} ><MDBIcon icon="edit" size="3x" /></MDBBtn></td>
+							}} > </MDBIcon>
+							</td>
 						</tr>
 					))}
 					<tr>
-					<th colSpan="3" className="text-center"><MDBBtn color="primary" onClick={() => {
+					<th colSpan="3" className="text-center"><MDBBtn color="cyan" onClick={() => {
 						setModal(!modal)
-					}}>+</MDBBtn></th>
+					}}>AGGIUNGI</MDBBtn></th>
 					</tr>
 				</MDBTableBody>
 			</MDBTable>
+			</MDBCol>
+			</MDBRow>
 		</MDBContainer>
 	)
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBIcon, MDBDataTable } from 'mdbreact'
+import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBIcon, MDBDataTable,MDBRow,MDBCol } from 'mdbreact'
 import { useEffect } from 'react'
 import { getDailies, updateDaily } from '../client'
 import DailyModal from '../components/dailyModal'
@@ -53,7 +53,8 @@ let data = {
 		},
 		{
 			label:"",
-			field:"update"
+			field:"update",
+			sort:"disabled"
 		}
 	],
 	rows: []
@@ -80,10 +81,10 @@ const Daily = () => {
 				dead: e.dead,
 				healed: e.healed,
 				tampons: e.tampons,
-				update:<MDBBtn flat floating color="primary" onClick={() => {
+				update:<MDBIcon icon="edit" size="lg" className="grey-text" onClick={() => {
 					setIndex(index)
 					setUpdateModal(!updateModal)
-				}}><MDBIcon icon="edit"/></MDBBtn>
+				}} > </MDBIcon>
 			})
 		})
 		return newData
@@ -98,9 +99,10 @@ const Daily = () => {
 	}, [])
 	return (
 		<MDBContainer>
-			<div className="text-center mt-3">
-				<h3>Dati Giornalieri</h3>
-			</div>
+			<MDBRow>
+			<MDBCol md="12">
+			<h4 className="text-center grey-text pt-3 mt-5 mb-5">DATI GIORNALIERI</h4>
+
 			<DailyModal isOpen={modal} toggle={() => setModal(!modal)} update={() => {
 						getDailies().then((res) => {
 							setDailies(res.data.dailies)
@@ -113,20 +115,27 @@ const Daily = () => {
 							setTableData(generateTable(res.data.dailies))
 						})
 			}} daily={dailies[dailyIndex]} />}
+			<div className="text-center">
+			<MDBBtn color="cyan" onClick={() => {
+						setModal(!modal)
+					}}>Aggiungi</MDBBtn>
+			</div>
 			<MDBDataTable
 			btn
-			autoWidth
-			entriesLabel="Mostra Dati"
-			infoLabel={["Mostrando da", "a", "su", "entrate"]}
-			paginationLabel={["Precedente", "Successivo"]}
+			entriesLabel=""
+			infoLabel={["Da", "a", "su", "entrate"]}
+			paginationLabel={["Prec", "Suc"]}
 			searchLabel="Cerca"
 			noRecordsFoundLabel="Nessun dato trovato"
-			responsive
+			striped
+      		bordered
+	  		hover
+	  		responsive
 			data={tableData} />
 			<div className="text-center">
-			<MDBBtn color="primary" onClick={() => {
+			<MDBBtn color="cyan" onClick={() => {
 						setModal(!modal)
-					}}>+</MDBBtn>
+					}}>Aggiungi</MDBBtn>
 			</div>
 			{/* <MDBTable>
 				<MDBTableHead>
@@ -168,6 +177,8 @@ const Daily = () => {
 					</tr>
 				</MDBTableBody>
 			</MDBTable> */}
+		</MDBCol>
+			</MDBRow>
 		</MDBContainer>
 	)
 }

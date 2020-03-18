@@ -41,8 +41,8 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 	}, [daily])
 	return (
 		<MDBModal isOpen={isOpen}toggle={() => toggle()}>
-			<MDBModalHeader toggle={() => toggle()}>Daily</MDBModalHeader>
 			<MDBModalBody>
+			<h4 className="text-center mt-3 cyan-text">Modifica report</h4>
 				<MDBDatePicker autoOk value={date} getValue={(value) => setDate(value)} />
 				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search/>
 				<MDBRow>
@@ -69,11 +69,8 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 					</MDBCol>
 				</MDBRow>
 			</MDBModalBody>
-			<MDBModalFooter>
-				<MDBBtn color="danger" onClick={() => {
-					toggle()
-				}}>Close</MDBBtn>
-				<MDBBtn color="primary" onClick={() => {
+			<div className="text-center mb-5">
+				<MDBBtn color="cyan" onClick={() => {
 					if (!region || dead < 0 || admissions < 0 || healed < 0 || positives < 0 || rea < 0 || tampons < 0 || isolated < 0) {
 						Swal.fire("Oops!", "Please fill in all the fields", "error")
 						return
@@ -82,8 +79,9 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 						update()
 						toggle()
 					})
-				}}>Submit</MDBBtn>
-			</MDBModalFooter>
+				}}>Modifica</MDBBtn>
+				<MDBBtn outline color="grey-text" onClick={() => toggle()}>Annulla</MDBBtn>
+			</div>
 		</MDBModal>
 	)
 }

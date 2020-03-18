@@ -33,13 +33,13 @@ const Navigation = () => {
           <MDBNavbarToggler color="cyan" id="navbar" onClick={() => toggleCollapse()} />
           <MDBCollapse id="navbar" isOpen={collapsed} navbar>
             <MDBNavbarNav right>
-              <MDBNavItem active>
+              <MDBNavItem active={history.location.pathname === "/"}>
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
-                <MDBNavItem>
+                <MDBNavItem active={history.location.pathname === "/region"}>
                   <MDBNavLink to="/region">Regioni</MDBNavLink>
                 </MDBNavItem>
-                <MDBNavItem>
+                <MDBNavItem active={history.location.pathname === "/daily"}>
                   <MDBNavLink to="/daily">Reports giornalieri</MDBNavLink>
                 </MDBNavItem>
             </MDBNavbarNav>

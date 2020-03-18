@@ -8,14 +8,13 @@ const RegionModal = ({isOpen, toggle, update}) => {
 	const [population, setPopulation] = useState(0)
 	return (
 		<MDBModal isOpen={isOpen} toggle={() => toggle()}>
-			<MDBModalHeader toggle={() => toggle()}>Add Region</MDBModalHeader>
 			<MDBModalBody>
+			<h4 className="text-center mt-3 cyan-text">Aggiungi regione</h4>
 				<MDBInput type="text" label="name" getValue={(value) => setName(value)} />
 				<MDBInput type="number" label="population" getValue={(value) => setPopulation(value)} />
 			</MDBModalBody>
-			<MDBModalFooter>
-				<MDBBtn color="danger" onClick={() => toggle()}>Close</MDBBtn>
-				<MDBBtn color="primary" onClick={() => {
+			<div className="text-center mb-5">
+				<MDBBtn color="cyan" onClick={() => {
 					if (!name || population < 1) {
 						Swal.fire("Oops!", "Please fill in all the fields", "error")
 						return
@@ -24,8 +23,10 @@ const RegionModal = ({isOpen, toggle, update}) => {
 						update()
 						toggle()
 					})
-				}}>Submit</MDBBtn>
-			</MDBModalFooter>
+				}}>Aggiungi</MDBBtn>
+
+<MDBBtn outline color="grey-text" onClick={() => toggle()}>Annulla</MDBBtn>
+			</div>
 		</MDBModal>
 	)
 }
