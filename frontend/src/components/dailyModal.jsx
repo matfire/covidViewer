@@ -33,8 +33,8 @@ const DailyModal = ({isOpen, toggle, update}) => {
 		<MDBModal isOpen={isOpen}toggle={() => toggle()}>
 			<MDBModalBody>
 			<h4 className="text-center mt-3 cyan-text">Aggiungi report</h4>
-				<MDBDatePicker autoOk getValue={(value) => setDate(value)} />
-				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search/>
+				<MDBDatePicker  cancelLabel="Annullare" okLabel="Ok" autoOk getValue={(value) => setDate(value)} />
+				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search searchLabel="Cerca"/>
 				<MDBRow>
 					<MDBCol md="6" sm="12">
 						<MDBInput type="number" getValue={(v) => setPositives(v)} label="Positivi" />
