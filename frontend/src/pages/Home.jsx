@@ -3,6 +3,9 @@ import { MDBContainer, MDBRow, MDBBtn, MDBNavbar, MDBNavbarBrand, MDBHamburgerTo
 import {getRegions, getDailies} from '../client' 
 import RegionOverview from '../components/regionOverview'
 
+import moment from 'moment';
+import 'moment/locale/it';
+
 const Home = () => {
 	const [dailies, setDailies] = useState([])
 	const [regions, setRegions] = useState([])
@@ -40,10 +43,40 @@ const Home = () => {
 									}}/>
 								</MDBCol>
 								<MDBCol md="4" sm="12">
-									<MDBDatePicker autoOk value={startRegionDate} getValue={setRegionStartDate}/>
+									<MDBDatePicker autoOk value={startRegionDate} getValue={setRegionStartDate} locale={moment.locale('it')} 
+				cancelLabel='Cancella'
+				theme={{
+  palette: {
+    primary: {
+      main: '#00bcd4',
+    },
+    secondary: {
+      main: '#00bcd4',
+      contrastText: '#00bcd4',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  }
+}}/>
 								</MDBCol>
 								<MDBCol md="4" sm="12">
-									<MDBDatePicker autoOk value={endRegionDate} getValue={setRegionEndDate}/>
+									<MDBDatePicker autoOk value={endRegionDate} getValue={setRegionEndDate} locale={moment.locale('it')} 
+				cancelLabel='Cancella'
+				theme={{
+  palette: {
+    primary: {
+      main: '#00bcd4',
+    },
+    secondary: {
+      main: '#00bcd4',
+      contrastText: '#00bcd4',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  }
+}}/>
 								</MDBCol>
 							</MDBRow>
 							<RegionOverview region={regions[regionIndex].value} data={dailies} start={startRegionDate} end={endRegionDate} />

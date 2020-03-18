@@ -10,10 +10,6 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.primary {
-    color: #00bcd4 !important;
-}
-
 .bg {
     background-image: url("/bg.png");
     height: 100vh;
