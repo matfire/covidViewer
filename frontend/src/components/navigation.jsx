@@ -30,7 +30,7 @@ const Navigation = () => {
               history.push("/")
             }}><img src="/covid-19.png" className="img-fluid" alt="" /></span>
           </MDBNavbarBrand>
-          <MDBHamburgerToggler color="cyan" id="navbar" onClick={() => toggleCollapse()} />
+          <MDBNavbarToggler color="cyan" id="navbar" onClick={() => toggleCollapse()} />
           <MDBCollapse id="navbar" isOpen={collapsed} navbar>
             <MDBNavbarNav right>
               <MDBNavItem active>
