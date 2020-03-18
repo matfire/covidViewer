@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import * as moment from 'moment'
 
 
-const RegionOverview = ({region, data}) => {
+const RegionOverview = ({region, data, start, end}) => {
 	const [set, setData] = useState({
 		datasets: []
 	})
 
 	useEffect(() => {
-		let regionData = data.filter((d) => d.region._id === region)
+		let regionData = data.filter((d) => new Date(d.date).getTime() >= start.getTime() && new Date(d.date).getTime() <= end.getTime()).filter((d) => d.region._id === region)
 		const labels = []
 		const healed = {label:"Guariti", fill:true, data:[], backgroundColor:"#9AE19D"}
 		const dead = {label:"Decessi", fill:true, data:[], backgroundColor:"#A71D31"}
@@ -31,7 +31,7 @@ const RegionOverview = ({region, data}) => {
 			isolated.data.push(r.isolated || 0)
 		})
 		setData(old => ({labels, datasets: [positives, isolated, admissions, reanimation, dead, healed, tampons]}))
-	}, [data, region])
+	}, [data, region, start, end])
 	return (
 		<Line data={set} options={{responsive:true, tooltips:{mode:"index", intersect:false, position:"nearest"}, hover:{mode:"nearest", intersect:true}}} />
 	)
