@@ -26,52 +26,63 @@ const Login = () => {
         <MDBCol md="5" xs="8" sm="8">
           <MDBCard>
             <MDBCardBody>
-            <div className="text-center mt-3 mb-5">
-              <img src="/covid19-big.png" className="img-fluid" alt="" />
-            </div>
-            <div className="grey-text">
-              <MDBInput
-                getValue={value => setEmail(value)}
-                type="email"
-                icon="envelope"
-                label="Email"
-                size="1x"
-              />
-              <MDBInput
-                getValue={value => setPassword("password")}
-                type="password"
-                icon="lock"
-                label="Password"
-                size="1x"
-              />
-              <p className="font-small d-flex justify-content-end pointer">
-              <span className="cyan-text" onClick={() => setModal(!modal)}>
-                  Password dimenticata?</span>
-              </p>
-              <div className="text-center mt-4">
-                <MDBBtn
-                  color="cyan"
-                  onClick={() => {
-                    if (!email || !password) {
-                      Swal.fire(
-                        "Oops",
-                        "Verifica di aver riempito tutti i campi",
-                        "errore"
-                      );
-                      return;
-                    }
-                    login(email, password).then(res => {
-                      Swal.fire("Hurray!", "Sei connesso", "success");
-                      localStorage.setItem("jwt", res.data.token);
-                      history.push("/");
-                    });
-                  }}
-                >
-                  Accedi
-                </MDBBtn>{" "}
-                <p className="grey-text mt-3">o <Link to="/register">Crea un account</Link>{" "}</p>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  login(email, password).then(res => {
+                    localStorage.setItem("jwt", res.data.token);
+                    history.push("/");
+                  }).catch((re) => {
+                    Swal.fire("Oops!", "Sembra che alcuni dati siano sbagliati 🤷", "error")
+                  });
+                }}
+              >
+                <div className="text-center mt-3 mb-5">
+                  <img src="/covid19-big.png" className="img-fluid" alt="" />
                 </div>
-              </div>
+                <div className="grey-text">
+                  <MDBInput
+                    getValue={value => setEmail(value)}
+                    value={email}
+                    type="email"
+                    validate
+                    success="right"
+                    error="wrong"
+                    icon="envelope"
+                    label="Email"
+                    required
+                    size="1x"
+                  />
+                  <MDBInput
+                    getValue={value => setPassword(value)}
+                    value={password}
+                    validate
+                    success="right"
+                    error="wrong"
+                    type="password"
+                    icon="lock"
+                    label="Password"
+                    required
+                    size="1x"
+                  />
+                  <p className="font-small d-flex justify-content-end pointer">
+                    <span
+                      className="cyan-text"
+                      onClick={() => setModal(!modal)}
+                    >
+                      Password dimenticata?
+                    </span>
+                  </p>
+                  <div className="text-center mt-4">
+                    <MDBBtn color="cyan" type="submit">
+                      Accedi
+                    </MDBBtn>{" "}
+                    <p className="grey-text mt-3">
+                      o <Link to="/register">Crea un account</Link>{" "}
+                    </p>
+                  </div>
+                </div>
+              </form>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

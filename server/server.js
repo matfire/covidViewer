@@ -59,7 +59,7 @@ app.post("/login", async(req, res) => {
 app.post("/password/change", async(req, res) => {
 	const {email, password} = req.body
 
-	const user = await User.find({email})
+	const user = await User.findOne({email})
 	if (!user) res.json({type:"error", message:"no user found"})
 	user.password = bcrypt.hashSync(password, 12)
 	await user.save()
