@@ -22,6 +22,22 @@ import RegionOverview from "../components/regionOverview";
 import TotalOverview from "../components/totalOverview";
 import moment from "moment";
 import "moment/locale/it";
+import DeltaOverview from "../components/deltaOverview";
+
+const dateTheme = {
+	palette: {
+	  primary: {
+		main: "#00bcd4"
+	  },
+	  secondary: {
+		main: "#00bcd4",
+		contrastText: "#00bcd4"
+	  }
+	},
+	typography: {
+	  useNextVariants: true
+	}
+  }
 
 const Home = () => {
   const [dailies, setDailies] = useState([]);
@@ -31,6 +47,8 @@ const Home = () => {
   const [endRegionDate, setRegionEndDate] = useState(new Date());
   const [startOverviewDate, setOverviewStartDate] = useState(new Date());
   const [endOverviewDate, setOverviewEndDate] = useState(new Date());
+  const [startDeltaDate, setDeltaStartDate] = useState(new Date());
+  const [endDeltaDate, setDeltaEndDate] = useState(new Date());
   useEffect(() => {
     getRegions().then(res => {
       let data = [];
@@ -82,20 +100,7 @@ const Home = () => {
                       getValue={setRegionStartDate}
                       locale={moment.locale("it")}
                       cancelLabel="Cancella"
-                      theme={{
-                        palette: {
-                          primary: {
-                            main: "#00bcd4"
-                          },
-                          secondary: {
-                            main: "#00bcd4",
-                            contrastText: "#00bcd4"
-                          }
-                        },
-                        typography: {
-                          useNextVariants: true
-                        }
-                      }}
+                      theme={dateTheme}
                     />{" "}
                   </MDBCol>
                   <MDBCol md="4" sm="12">
@@ -105,20 +110,7 @@ const Home = () => {
                       getValue={setRegionEndDate}
                       locale={moment.locale("it")}
                       cancelLabel="Cancella"
-                      theme={{
-                        palette: {
-                          primary: {
-                            main: "#00bcd4"
-                          },
-                          secondary: {
-                            main: "#00bcd4",
-                            contrastText: "#00bcd4"
-                          }
-                        },
-                        typography: {
-                          useNextVariants: true
-                        }
-                      }}
+                      theme={dateTheme}
                     />
                   </MDBCol>
                   <MDBCol md="4" sm="12"></MDBCol>
@@ -151,20 +143,7 @@ const Home = () => {
                       value={startOverviewDate}
                       getValue={setOverviewStartDate}
 					  locale={moment.locale("it")}
-					  theme={{
-                        palette: {
-                          primary: {
-                            main: "#00bcd4"
-                          },
-                          secondary: {
-                            main: "#00bcd4",
-                            contrastText: "#00bcd4"
-                          }
-                        },
-                        typography: {
-                          useNextVariants: true
-                        }
-                      }}
+					  theme={dateTheme}
                     />
                   </MDBCol>
                   <MDBCol md="4" sm="12">
@@ -175,20 +154,7 @@ const Home = () => {
                       value={endOverviewDate}
                       getValue={setOverviewEndDate}
 					  locale={moment.locale("it")}
-					  theme={{
-                        palette: {
-                          primary: {
-                            main: "#00bcd4"
-                          },
-                          secondary: {
-                            main: "#00bcd4",
-                            contrastText: "#00bcd4"
-                          }
-                        },
-                        typography: {
-                          useNextVariants: true
-                        }
-                      }}
+					  theme={dateTheme}
                     />
                   </MDBCol>
                 </MDBRow>
@@ -196,6 +162,48 @@ const Home = () => {
                   data={dailies}
                   start={startOverviewDate}
                   end={endOverviewDate}
+                />
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        )}
+		{regions.length > 0 && (
+          <MDBCol size="12" className="mt-5">
+            <MDBCard>
+              <MDBCardBody>
+                <MDBCardHeader className="form-header amber">
+                  Delta
+                </MDBCardHeader>
+
+                <MDBRow>
+                  <MDBCol md="4" sm="12"></MDBCol>
+                  <MDBCol md="4" sm="12">
+                    <MDBDatePicker
+                      cancelLabel="Cancella"
+                      okLabel="Ok"
+                      autoOk
+                      value={startDeltaDate}
+                      getValue={setDeltaStartDate}
+					  locale={moment.locale("it")}
+					  theme={dateTheme}
+                    />
+                  </MDBCol>
+                  <MDBCol md="4" sm="12">
+                    <MDBDatePicker
+                      cancelLabel="Cancella"
+                      okLabel="OK"
+                      autoOk
+                      value={endDeltaDate}
+                      getValue={setDeltaEndDate}
+					  locale={moment.locale("it")}
+					  theme={dateTheme}
+                    />
+                  </MDBCol>
+                </MDBRow>
+                <DeltaOverview
+                  data={dailies}
+                  start={startDeltaDate}
+                  end={endDeltaDate}
                 />
               </MDBCardBody>
             </MDBCard>
