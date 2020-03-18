@@ -10,14 +10,13 @@ const PasswordModal = ({isOpen, toggle}) => {
 
 	return (
 		<MDBModal isOpen={isOpen} toggle={() => toggle()}>
-			<MDBModalHeader toggle={() => toggle()}>Reset Password</MDBModalHeader>
 			<MDBModalBody>
+				<h4 className="text-center mt-3 cyan-text">Imposta una nuova password</h4>
 				<MDBInput getValue={(v) => setEmail(v)} label="Email" type="email" />
 				<MDBInput getValue={(v) => setPassword(v)} label="Nuova Password" type="password" />
 			</MDBModalBody>
-			<MDBModalFooter>
-				<MDBBtn color="danger" onClick={() => toggle()}>Annulla</MDBBtn>
-				<MDBBtn color="primary" onClick={() => {
+			<div className="text-center mb-5">
+				<MDBBtn color="cyan" onClick={() => {
 					if (!email || !password) {
 						Swal.fire("Oops!", "Verifica di aver riempito tutti i dati", "error")
 					}
@@ -28,7 +27,8 @@ const PasswordModal = ({isOpen, toggle}) => {
 						Swal.fire("Oops!", "Qualcosa é andato storto", "error")
 					})
 				}}>Invia</MDBBtn>
-			</MDBModalFooter>
+				<MDBBtn outline color="grey-text" onClick={() => toggle()}>Annulla</MDBBtn>
+			</div>
 		</MDBModal>
 	)
 }

@@ -1,18 +1,11 @@
 import React from "react";
-import { MDBContainer, MDBFooter } from "mdbreact";
+import { MDBContainer, MDBFooter, MDBTypography, MDBBox } from "mdbreact";
 const Footer = () => {
   return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 0,
-        width: "100%",
-        backgroundColor: "cray"
-      }}
-    >
-      <div className="footer-copyright text-center py-3">
+    <div >
+      <div className="footer-copyright text-center py-5">
         <MDBContainer fluid>
-          &copy; {new Date().getFullYear()} Copyright{" "}
+        <MDBBox tag="p"><small className="grey-text">&copy; {new Date().getFullYear()} | powered with &#127861; & &#9749; by <strong>LuMa</strong> {" "}</small></MDBBox>
         </MDBContainer>
       </div>
     </div>

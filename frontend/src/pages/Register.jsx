@@ -10,16 +10,18 @@ const Register = () => {
 	return (
 		<MDBContainer>
 			<MDBRow center className="mt-5 pt-5">
-				<MDBCol md="6" xs="8" sm="8" >
+				<MDBCol md="5" xs="8" sm="8" >
 					<MDBCard>
 						<MDBCardBody>
-							<MDBCardHeader className="form-header amber">
-								<h3>Crea un Account</h3>
-							</MDBCardHeader>
+						<div className="text-center mt-3 mb-5">
+              <img src="/covid19-big.png" className="img-fluid" alt="" />
+            </div>
+								
+								<div className="grey-text">
 							<MDBInput getValue={(value) => setEmail(value)} type="email" icon="envelope" label="Email" />
 							<MDBInput getValue={(value) => setPassword("password")} type="password" icon="lock" label="Password" />
 							<div className="text-center mt-5">
-								<MDBBtn color="primary" onClick={() => {
+								<MDBBtn color="cyan" onClick={() => {
 									if (!email || !password) {
 										Swal.fire("Oops", "Verifica che tutti i campi siano riempiti", "error")
 										return
@@ -29,7 +31,9 @@ const Register = () => {
 										localStorage.setItem("jwt", res.data.token)
 										history.push("/")
 									})
-								}}>Invia</MDBBtn> o <Link to="/login">Connettiti</Link>
+								}}>Crea un account</MDBBtn> 
+								<p className="grey-text mt-3">o <Link to="/login">Connettiti</Link></p>
+								</div>
 							</div>
 						</MDBCardBody>
 					</MDBCard>

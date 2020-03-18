@@ -5,8 +5,6 @@ import {
   MDBBtn,
   MDBNavbar,
   MDBNavbarBrand,
-  MDBHamburgerToggler,
-  MDBCollapse,
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink
@@ -14,43 +12,39 @@ import {
 import {useHistory} from 'react-router-dom'
 
 const Navigation = () => {
-  const [collapse1, setCo1] = useState(false);
-  const [collapseID, setCoID] = useState("");
   const history = useHistory()
-  const toggleCollapse = id => {
-    setCoID(id);
-  };
-  const toggleSingleCollapse = id => {
-    setCo1(!collapse1);
-  };
-  return (
-    <MDBNavbar color="light-blue" light>
-      <MDBContainer>
-        <MDBNavbarBrand>
-          <span className="text-white" onClick={() => {
-            history.push("/")
-          }}>Covid-19</span>
-        </MDBNavbarBrand>
-        <MDBHamburgerToggler
-          color="white"
-          id="hamburger1"
-          onClick={() => {
-            toggleSingleCollapse("collapse1");
-          }}
-        />
-        <MDBCollapse isOpen={collapse1} navbar>
-          <MDBNavbarNav left>
-            <MDBNavItem>
-              <MDBNavLink to="/region">Regions</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/daily">Reports</MDBNavLink>
-            </MDBNavItem>
-          </MDBNavbarNav>
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
-  );
+  
+  if (history.location.pathname !== "/login" && history.location.pathname !== "/register" ) {
+    return (
+      <MDBNavbar color="white" light>
+        <MDBContainer>
+          <MDBNavbarBrand>
+            <span className="cursor" onClick={() => {
+              history.push("/")
+            }}><img src="/covid-19.png" className="img-fluid" alt="" /></span>
+          </MDBNavbarBrand>
+          
+            <MDBNavbarNav right>
+            <MDBNavItem active>
+                <MDBNavLink to="/">Home</MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink to="/region">Regioni</MDBNavLink>
+              </MDBNavItem>
+              <MDBNavItem>
+                <MDBNavLink to="/daily">Reports giornalieri</MDBNavLink>
+              </MDBNavItem>
+            </MDBNavbarNav>
+        </MDBContainer>
+      </MDBNavbar>
+    );
+
+  } else {
+    return (
+      <div></div>
+    );
+  } 
+  
 };
 
 export default Navigation;
