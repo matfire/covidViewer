@@ -18,7 +18,7 @@ const Home = () => {
 		getDailies().then(res => setDailies(res.data.dailies))
 	}, [])
 	return (
-		<MDBContainer fluid>
+		<MDBContainer size="xl">
 			<MDBRow className="mt-5">
 				{regions.length > 0 && <MDBCol size="12">
 					<MDBCard>

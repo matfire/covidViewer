@@ -20,7 +20,7 @@ const PasswordModal = ({isOpen, toggle}) => {
 					if (!email || !password) {
 						Swal.fire("Oops!", "Verifica di aver riempito tutti i dati", "error")
 					}
-					updatePassword(email, password).then(() => {
+					updatePassword(email, password).then((res) => {
 						Swal.fire("Yeah!", "Password modificata con successo", "success")
 						toggle()
 					}).catch(() => {
