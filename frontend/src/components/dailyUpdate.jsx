@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { createDaily, getRegions, updateDaily } from '../client'
 import { useEffect } from 'react'
 import Swal from 'sweetalert2'
+import moment from 'moment';
+import 'moment/locale/it';
 
 const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 	const [regions, setRegions] = useState([])
@@ -43,7 +45,22 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 		<MDBModal isOpen={isOpen}toggle={() => toggle()}>
 			<MDBModalBody>
 			<h4 className="text-center mt-3 cyan-text">Modifica report</h4>
-				<MDBDatePicker  cancelLabel="Annullare" okLabel="Ok" autoOk value={date} getValue={(value) => setDate(value)} />
+				<MDBDatePicker autoOk value={date} getValue={(value) => setDate(value)} locale={moment.locale('it')} 
+				cancelLabel='Cancella'
+				theme={{
+  palette: {
+    primary: {
+      main: '#00bcd4',
+    },
+    secondary: {
+      main: '#00bcd4',
+      contrastText: '#00bcd4',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  }
+}}/>
 				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search searchLabel="Cerca"/>
 				<MDBRow>
 					<MDBCol md="6" sm="12">
