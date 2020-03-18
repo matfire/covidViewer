@@ -14,22 +14,22 @@ const Register = () => {
 					<MDBCard>
 						<MDBCardBody>
 							<MDBCardHeader className="form-header amber">
-								<h3>Sign Up</h3>
+								<h3>Crea un Account</h3>
 							</MDBCardHeader>
-							<MDBInput getValue={(value) => setEmail(value)} type="email" icon="envelope" label="Email here" />
+							<MDBInput getValue={(value) => setEmail(value)} type="email" icon="envelope" label="Email" />
 							<MDBInput getValue={(value) => setPassword("password")} type="password" icon="lock" label="Password" />
 							<div className="text-center mt-5">
 								<MDBBtn color="primary" onClick={() => {
 									if (!email || !password) {
-										Swal.fire("Oops", "Check that all the fields are filled in", "error")
+										Swal.fire("Oops", "Verifica che tutti i campi siano riempiti", "error")
 										return
 									}
 									register(email, password).then((res) => {
-										Swal.fire("Hurray!", "Your account has been created", "success")
+										Swal.fire("Hurray!", "Il tuo account é stato creato", "success")
 										localStorage.setItem("jwt", res.data.token)
 										history.push("/")
 									})
-								}}>Submit</MDBBtn> or <Link to="/login">Sign In</Link>
+								}}>Invia</MDBBtn> o <Link to="/login">Connettiti</Link>
 							</div>
 						</MDBCardBody>
 					</MDBCard>

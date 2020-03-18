@@ -13,6 +13,10 @@ const register = (email, password) => {
 	return api.post("/register", {email, password})
 }
 
+const updatePassword = (email, password) => {
+	return api.post("/password/change", {email, password})
+}
+
 const getRegions = () => {
 	return api.get("/regions", {
 		headers: {
@@ -61,4 +65,4 @@ const updateDaily = (id, data) => {
 	})
 }
 
-export {login, register, getRegions, createRegion, updateRegion, getDailies, createDaily, updateDaily}
+export {login, register, updatePassword, getRegions, createRegion, updateRegion, getDailies, createDaily, updateDaily}

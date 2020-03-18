@@ -106,7 +106,7 @@ app.post("/regions", isAuthenticated, async(req, res) => {
 // daily management
 
 app.get("/daily", isAuthenticated, async(req, res) => {
-	const dailies = await Daily.find().populate("region")
+	const dailies = await Daily.find().populate("region").sort("date")
 	res.json({dailies})
 })
 
