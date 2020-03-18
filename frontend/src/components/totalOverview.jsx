@@ -50,7 +50,7 @@ const TotalOverview = ({data, start, end}) => {
 		setData(old => ({labels, datasets: [positives, isolated, admissions, reanimation, dead, healed, tampons]}))
 	}, [data, start, end])
 	return (
-		<Line data={set} options={{responsive:true, tooltips:{mode:"index", intersect:false, position:"nearest"}, hover:{mode:"nearest", intersect:true}}} />
+		<Line data={set} options={{responsive:true, tooltips:{mode:"index", intersect:false, position:"nearest"}, hover:{mode:"nearest", intersect:true} }} />
 	)
 }
 

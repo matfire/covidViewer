@@ -56,42 +56,42 @@ const DeltaOverview = ({data, start, end}) => {
 			if (index === 0) {
 				return e
 			}
-			return (e - healed.data[index - 1])
+			return (e - dead.data[index - 1])
 		})
 		const dpositives = {label:"Positivi", fill:true, data:[]}
 		dpositives.data = positives.data.map((e, index) => {
 			if (index === 0) {
 				return e
 			}
-			return (e - healed.data[index - 1])
+			return (e - positives.data[index - 1])
 		})
 		const dadmissions = {label:"Ricoverati", fill:true, data:[]}
 		dadmissions.data = admissions.data.map((e, index) => {
 			if (index === 0) {
 				return e
 			}
-			return (e - healed.data[index - 1])
+			return (e - admissions.data[index - 1])
 		})
 		const dreanimation = {label:"REA", fill:true, data:[]}
 		dreanimation.data = reanimation.data.map((e, index) => {
 			if (index === 0) {
 				return e
 			}
-			return (e - healed.data[index - 1])
+			return (e - reanimation.data[index - 1])
 		})
 		const dtampons = {label:"Tamponi", fill:true, data:[]}
 		dtampons.data = tampons.data.map((e, index) => {
 			if (index === 0) {
 				return e
 			}
-			return (e - healed.data[index - 1])
+			return (e - tampons.data[index - 1])
 		})
 		const disolated = {label:"Isolamento", fill:true, data:[]}
 		disolated.data = isolated.data.map((e, index) => {
 			if (index === 0) {
 				return e
 			}
-			return (e - healed.data[index - 1])
+			return (e - isolated.data[index - 1])
 		})
 
 		setData(old => ({labels, datasets: [dpositives, disolated, dadmissions, dreanimation, ddead, dhealed, dtampons]}))
