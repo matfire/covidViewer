@@ -61,7 +61,7 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
     useNextVariants: true,
   }
 }}/>
-				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search/>
+				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search searchLabel="Cerca"/>
 				<MDBRow>
 					<MDBCol md="6" sm="12">
 						<MDBInput value={positives} type="number" getValue={(v) => setPositives(v)} label="Positivi" />
