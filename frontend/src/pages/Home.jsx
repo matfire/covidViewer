@@ -66,6 +66,10 @@ const Home = () => {
       setOverviewStartDate(new Date(res.data.dailies[0].date));
       setOverviewEndDate(
         new Date(res.data.dailies[res.data.dailies.length - 1].date)
+	  );
+	  setDeltaStartDate(new Date(res.data.dailies[0].date));
+      setDeltaEndDate(
+        new Date(res.data.dailies[res.data.dailies.length - 1].date)
       );
     });
   }, []);
