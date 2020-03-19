@@ -120,10 +120,10 @@ const Daily = () => {
 						setModal(!modal)
 					}}>Aggiungi</MDBBtn>
 			</div>
-			<MDBDataTable
+			<MDBDataTable noBottomColumns 
 			btn
 			entriesLabel=""
-			infoLabel={["Da", "a", "su", "entrate"]}
+			infoLabel={["Da", "a", "di", "record"]}
 			paginationLabel={["Prec", "Suc"]}
 			searchLabel="Cerca"
 			noRecordsFoundLabel="Nessun dato trovato"

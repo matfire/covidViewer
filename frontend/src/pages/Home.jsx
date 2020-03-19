@@ -108,7 +108,7 @@ const Home = () => {
 				role="tab"
 				onClick={() => toggle("1")}
 				>
-					Focus Regione
+					Focus per Regione
 				</MDBNavLink>
 			 </MDBNavItem>
 			 <MDBNavItem>
@@ -135,10 +135,10 @@ const Home = () => {
 			 </MDBNavItem>
 		 </MDBNav>
 		 <MDBTabContent className="card" activeItem={tab}>
-			 <MDBTabPane tabId="1" role="tabpanel">
+			 <MDBTabPane tabId="1" role="tabpanel" className="pb-4">
 				 {regions.length > 0 ? <div>
                 <MDBRow>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="4" sm="12" className="pl-5">
                     <MDBSelect
 					label="Seleziona"
                       options={regions}
@@ -153,8 +153,8 @@ const Home = () => {
                       }}
                     />
                   </MDBCol>
-				  <MDBCol md="4" sm="12"></MDBCol>
-                  <MDBCol md="2" sm="5">
+				  <MDBCol md="2" sm="12"></MDBCol>
+                  <MDBCol md="3" sm="6" className="pl-5 pr-2"> 
                     <MDBDatePicker
                       autoOk
                       value={startRegionDate}
@@ -164,7 +164,7 @@ const Home = () => {
                       theme={dateTheme}
                     />{" "}
                   </MDBCol>
-                  <MDBCol md="2" sm="5">
+                  <MDBCol md="3" sm="6" className="pl-5 pr-2">
                     <MDBDatePicker
                       autoOk
                       value={endRegionDate}
@@ -183,11 +183,11 @@ const Home = () => {
                 />
 				 </div> : <MDBSpinner />}
 			 </MDBTabPane>
-			 <MDBTabPane tabId="2" role="tabpanel">
+			 <MDBTabPane tabId="2" role="tabpanel" className="pb-4">
 				 {regions.length > 0 ? <div>
 					<MDBRow>
-                  <MDBCol md="8" sm="12"></MDBCol>
-                  <MDBCol md="2" sm="5">
+                  <MDBCol md="6" sm="12"></MDBCol>
+                  <MDBCol md="3" sm="6" className="pl-5 pr-2"> 
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="Ok"
@@ -198,7 +198,7 @@ const Home = () => {
 					  theme={dateTheme}
                     />
                   </MDBCol>
-                  <MDBCol md="2" sm="5">
+                  <MDBCol md="3" sm="6" className="pl-5 pr-2"> 
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="OK"
@@ -217,11 +217,11 @@ const Home = () => {
                 />
 				 </div> : <MDBSpinner />}
 			 </MDBTabPane>
-			 <MDBTabPane tabId="3" role="tabpanel">
+			 <MDBTabPane tabId="3" role="tabpanel" className="pb-4">
 				 {regions.length > 0 ? <div>
 					<MDBRow>
-                  <MDBCol md="8" sm="12"></MDBCol>
-                  <MDBCol md="2" sm="5">
+                  <MDBCol md="6" sm="12"></MDBCol>
+                  <MDBCol md="3" sm="6" className="pl-5 pr-2"> 
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="Ok"
@@ -232,7 +232,7 @@ const Home = () => {
 					  theme={dateTheme}
                     />
                   </MDBCol>
-                  <MDBCol md="2" sm="5">
+                  <MDBCol md="3" sm="6" className="pl-5 pr-2"> 
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="OK"
