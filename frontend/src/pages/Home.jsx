@@ -16,8 +16,10 @@ import {
   MDBSelect,
   MDBDatePicker,
   MDBCardHeader,
-  MDBTabPane, 
-  MDBTabContent
+  MDBNav,
+  MDBTabContent,
+  MDBTabPane,
+  MDBSpinner
 } from "mdbreact";
 import { getRegions, getDailies } from "../client";
 import RegionOverview from "../components/regionOverview";
@@ -66,6 +68,7 @@ const Home = () => {
   const [endOverviewDate, setOverviewEndDate] = useState(new Date());
   const [startDeltaDate, setDeltaStartDate] = useState(new Date());
   const [endDeltaDate, setDeltaEndDate] = useState(new Date());
+  const [tab, setActiveTab] = useState("1")
   useEffect(() => {
     getRegions().then(res => {
       let data = [];
@@ -90,17 +93,45 @@ const Home = () => {
       );
     });
   }, []);
-  return (
-	  
-    <MDBContainer size="xl">
-      <MDBRow className="mt-5 pb-5">
-        {regions.length > 0 && (
-          <MDBCol size="12">
-            <MDBCard>
-              <MDBCardBody>
-			  <MDBRow>
-              <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-2">FOCUS PER REGIONE</h4> </MDBCol>
-			  </MDBRow>
+ const toggle = (tab) => {
+	setActiveTab(tab)
+ }
+ return (
+	 <MDBContainer size="xl">
+		 <MDBNav tabs color="cyan" className="mt-5">
+			 <MDBNavItem>
+				<MDBNavLink
+				to="#"
+				active={tab === "1"}
+				onClick={() => toggle("1")}
+				role="tab"
+				>
+					Regione
+				</MDBNavLink>
+			 </MDBNavItem>
+			 <MDBNavItem>
+				 <MDBNavLink
+				 to="#"
+				 active={tab === "2"}
+				 onClick={() => toggle("2")}
+				 role="tab"
+				 >
+					 Italia
+				 </MDBNavLink>
+			 </MDBNavItem>
+			 <MDBNavItem>
+				 <MDBNavLink
+				 to="#"
+				 active={tab === "3"}
+				 onClick={() => toggle("3")}
+				 role="tab">
+					 Delta
+				 </MDBNavLink>
+			 </MDBNavItem>
+		 </MDBNav>
+		 <MDBTabContent className="card" activeItem={tab}>
+			 <MDBTabPane tabId="1" role="tabpanel">
+				 {regions.length > 0 ? <div>
                 <MDBRow>
                   <MDBCol md="4" sm="12">
                     <MDBSelect
@@ -145,18 +176,11 @@ const Home = () => {
                   start={startRegionDate}
                   end={endRegionDate}
                 />
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        )}
-        {regions.length > 0 && (
-          <MDBCol size="12" className="mt-5">
-            <MDBCard>
-              <MDBCardBody>
-			  <MDBRow>
-              <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-0 pb-0">FOCUS ITALIA</h4> </MDBCol>
-			  </MDBRow>
-                <MDBRow>
+				 </div> : <MDBSpinner />}
+			 </MDBTabPane>
+			 <MDBTabPane tabId="2" role="tabpanel">
+				 {regions.length > 0 ? <div>
+					<MDBRow>
                   <MDBCol md="8" sm="12"></MDBCol>
                   <MDBCol md="2" sm="5">
                     <MDBDatePicker
@@ -186,18 +210,11 @@ const Home = () => {
                   start={startOverviewDate}
                   end={endOverviewDate}
                 />
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        )}
-		{regions.length > 0 && (
-          <MDBCol size="12" className="mt-5">
-            <MDBCard>
-              <MDBCardBody>
-			  <MDBRow>
-              <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-2">DELTA</h4> </MDBCol>
-			  </MDBRow>
-                <MDBRow>
+				 </div> : <MDBSpinner />}
+			 </MDBTabPane>
+			 <MDBTabPane tabId="3" role="tabpanel">
+				 {regions.length > 0 ? <div>
+					<MDBRow>
                   <MDBCol md="8" sm="12"></MDBCol>
                   <MDBCol md="2" sm="5">
                     <MDBDatePicker
@@ -227,13 +244,11 @@ const Home = () => {
                   start={startDeltaDate}
                   end={endDeltaDate}
                 />
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        )}
-      </MDBRow>
-    </MDBContainer>
-  );
+				 </div> : <MDBSpinner />}
+			 </MDBTabPane>
+		 </MDBTabContent>
+	 </MDBContainer>
+ )
 };
 
 export default Home;
