@@ -106,7 +106,7 @@ const Home = () => {
 				onClick={() => toggle("1")}
 				role="tab"
 				>
-					Regione
+					Focus Regione
 				</MDBNavLink>
 			 </MDBNavItem>
 			 <MDBNavItem>
@@ -116,7 +116,7 @@ const Home = () => {
 				 onClick={() => toggle("2")}
 				 role="tab"
 				 >
-					 Italia
+					 Focus Italia
 				 </MDBNavLink>
 			 </MDBNavItem>
 			 <MDBNavItem>
@@ -125,7 +125,7 @@ const Home = () => {
 				 active={tab === "3"}
 				 onClick={() => toggle("3")}
 				 role="tab">
-					 Delta
+					 Delta giornaliero
 				 </MDBNavLink>
 			 </MDBNavItem>
 		 </MDBNav>
