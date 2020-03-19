@@ -84,10 +84,12 @@ const Home = () => {
               <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-2">FOCUS PER REGIONE</h4> </MDBCol>
 			  </MDBRow>
                 <MDBRow>
-                  <MDBCol md="6" sm="12">
+                  <MDBCol md="4" sm="12">
                     <MDBSelect
+					label="Seleziona"
                       options={regions}
-                      search
+					  search
+					  searchLabel=" Cerca"
                       getValue={value => {
                         let r = regions.findIndex(e => {
                           return e.value == value;
@@ -97,7 +99,7 @@ const Home = () => {
                       }}
                     />
                   </MDBCol>
-				  <MDBCol md="2" sm="12"></MDBCol>
+				  <MDBCol md="4" sm="12"></MDBCol>
                   <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       autoOk
@@ -133,13 +135,12 @@ const Home = () => {
           <MDBCol size="12" className="mt-5">
             <MDBCard>
               <MDBCardBody>
-                <MDBCardHeader className="form-header amber">
-                  Italia
-                </MDBCardHeader>
-
+			  <MDBRow>
+              <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-0 pb-0">FOCUS ITALIA</h4> </MDBCol>
+			  </MDBRow>
                 <MDBRow>
-                  <MDBCol md="4" sm="12"></MDBCol>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="8" sm="12"></MDBCol>
+                  <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="Ok"
@@ -150,7 +151,7 @@ const Home = () => {
 					  theme={dateTheme}
                     />
                   </MDBCol>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="OK"
@@ -175,13 +176,12 @@ const Home = () => {
           <MDBCol size="12" className="mt-5">
             <MDBCard>
               <MDBCardBody>
-                <MDBCardHeader className="form-header amber">
-                  Delta
-                </MDBCardHeader>
-
+			  <MDBRow>
+              <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-2">DELTA</h4> </MDBCol>
+			  </MDBRow>
                 <MDBRow>
-                  <MDBCol md="4" sm="12"></MDBCol>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="8" sm="12"></MDBCol>
+                  <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="Ok"
@@ -192,7 +192,7 @@ const Home = () => {
 					  theme={dateTheme}
                     />
                   </MDBCol>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       cancelLabel="Cancella"
                       okLabel="OK"

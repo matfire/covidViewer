@@ -14,14 +14,12 @@ const TotalOverview = ({data, start, end}) => {
 		let regionData = data.filter((d) => new Date(d.date).getTime() >= start.getTime() && new Date(d.date).getTime() <= end.getTime())
 		const datesets = []
 		const labels = []
-		
-		const healed = {label:"Guariti", fill:true, data:[], backgroundColor:"#9AE19D"}
-		const dead = {label:"Decessi", fill:true, data:[], backgroundColor:"#A71D31"}
-		const positives = {label:"Positivi", fill:true, data:[]}
-		const admissions = {label:"Ricoverati", fill:true, data:[]}
-		const reanimation = {label:"REA", fill:true, data:[]}
-		const tampons = {label:"Tamponi", fill:true, data:[]}
-		const isolated = {label:"Isolamento", fill:true, data:[]}
+		const healed = {label:"Guariti", fill:true, data:[], backgroundColor:"rgba(42, 113, 109, 0.20)", borderColor:"rgba(42, 113, 109, 1)",borderWidth:"1",pointBackgroundColor:"rgba(42, 113, 109, 1)"}
+		const dead = {label:"Decessi", fill:true, data:[], backgroundColor:"rgba(0, 0, 0, 0.20)", borderColor:"rgba(0, 0, 0, 1)",borderWidth:"1",pointBackgroundColor:"rgba(0, 0, 0, 1)"}
+		const positives = {label:"Positivi", fill:true, data:[], backgroundColor:"rgba(204, 204, 204, 0.10)", borderColor:"rgba(204, 204, 204, 1)",borderWidth:"1",pointBackgroundColor:"rgba(204, 204, 204, 1)"}
+		const admissions = {label:"Ricoverati", fill:true, data:[], backgroundColor:"rgba(17, 138, 178, 0.20)", borderColor:"rgba(17, 138, 178, 1)",borderWidth:"1",pointBackgroundColor:"rgba(0, 127, 255, 1)"}
+		const reanimation = {label:"REA", fill:true, data:[], backgroundColor:"rgba(174, 0, 0, 0.20)", borderColor:"rgba(174, 0, 0, 1)",borderWidth:"1",pointBackgroundColor:"rgba(174, 0, 0, 1)"}
+		const isolated = {label:"Isolamento", fill:true, data:[], backgroundColor:"rgba(255, 227, 50, 0.20)", borderColor:"rgba(255, 227, 50, 1)",borderWidth:"1",pointBackgroundColor:"rgba(255, 227, 50, 1)"}
 		regionData.forEach((r) => {
 			let date = moment(r.date).format("DD/MM").toString()
 			if (labels.indexOf(date) < 0) {
@@ -31,7 +29,6 @@ const TotalOverview = ({data, start, end}) => {
 				positives.data.push(r.positives)
 				admissions.data.push(r.admissions)
 				reanimation.data.push(r.rea)
-				tampons.data.push(r.tampons)
 				isolated.data.push(r.isolated || 0)
 			} else {
 				let index = labels.indexOf(date)
@@ -40,17 +37,16 @@ const TotalOverview = ({data, start, end}) => {
 				positives.data[index] += r.positives
 				admissions.data[index] += r.admissions
 				reanimation.data[index] += r.rea
-				tampons.data[index] += r.tampons
 				isolated.data[index] += r.isolated || 0
 			}
 
 		})
 
 
-		setData(old => ({labels, datasets: [positives, isolated, admissions, reanimation, dead, healed, tampons]}))
+		setData(old => ({labels, datasets: [positives, isolated, admissions, reanimation, dead, healed]}))
 	}, [data, start, end])
 	return (
-		<Line data={set} options={{responsive:true, tooltips:{mode:"index", intersect:false, position:"nearest"}, hover:{mode:"nearest", intersect:true} }} />
+		<Line data={set} options={{responsive:true, legend:{position:"bottom"}, tooltips:{mode:"index", intersect:false, position:"nearest"}, hover:{mode:"nearest", intersect:true}}} />
 	)
 }
 
