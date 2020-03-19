@@ -13,11 +13,11 @@ const AuthedRoute = ({path, exact, component}) => {
 const Router = () => {
 	return (
 		<Switch>
-			<Route path="/login" component={Login} />
-			<AuthedRoute path="/" exact component={Home} />
+			<Route path="/login" exact component={Login} />
 			<AuthedRoute path="/region" exact component={Regions} />
 			<AuthedRoute path="/daily" exact component={Daily} />
-			<Route path="/register" component={Register} />
+			<Route path="/register" exact component={Register} />
+			<AuthedRoute path="/" exact component={Home} />
 			<Redirect to="/login" />
 		</Switch>
 	)
