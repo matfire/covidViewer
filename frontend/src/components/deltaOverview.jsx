@@ -12,7 +12,6 @@ const DeltaOverview = ({data, start, end}) => {
 
 	useEffect(() => {
 		let regionData = data.filter((d) => new Date(d.date).getTime() >= start.getTime() && new Date(d.date).getTime() <= end.getTime())
-		const datesets = []
 		const labels = []
 		
 		const healed = {label:"Guariti", fill:true, data:[], backgroundColor:"#9AE19D"}
@@ -43,11 +42,59 @@ const DeltaOverview = ({data, start, end}) => {
 				tampons.data[index] += r.tampons
 				isolated.data[index] += r.isolated || 0
 			}
-
+		})
+		const dhealed = {label:"Guariti", fill:true, data:[], backgroundColor:"#9AE19D"}
+		dhealed.data = healed.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return e - healed.data[index - 1]
 		})
 
+		const ddead = {label:"Decessi", fill:true, data:[], backgroundColor:"#A71D31"}
+		ddead.data = dead.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return (e - dead.data[index - 1])
+		})
+		const dpositives = {label:"Positivi", fill:true, data:[]}
+		dpositives.data = positives.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return (e - positives.data[index - 1])
+		})
+		const dadmissions = {label:"Ricoverati", fill:true, data:[]}
+		dadmissions.data = admissions.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return (e - admissions.data[index - 1])
+		})
+		const dreanimation = {label:"REA", fill:true, data:[]}
+		dreanimation.data = reanimation.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return (e - reanimation.data[index - 1])
+		})
+		const dtampons = {label:"Tamponi", fill:true, data:[]}
+		dtampons.data = tampons.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return (e - tampons.data[index - 1])
+		})
+		const disolated = {label:"Isolamento", fill:true, data:[]}
+		disolated.data = isolated.data.map((e, index) => {
+			if (index === 0) {
+				return e
+			}
+			return (e - isolated.data[index - 1])
+		})
 
-		setData(old => ({labels, datasets: [positives, isolated, admissions, reanimation, dead, healed, tampons]}))
+		setData(old => ({labels, datasets: [dpositives, disolated, dadmissions, dreanimation, ddead, dhealed, dtampons]}))
 	}, [data, start, end])
 	return (
 		<Line data={set} options={{responsive:true, tooltips:{mode:"index", intersect:false, position:"nearest"}, hover:{mode:"nearest", intersect:true}}} />
