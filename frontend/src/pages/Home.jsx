@@ -71,16 +71,16 @@ const Home = () => {
   }, []);
   return (
     <MDBContainer size="xl">
-      <MDBRow className="mt-5">
+      <MDBRow className="mt-5 pb-5">
         {regions.length > 0 && (
           <MDBCol size="12">
             <MDBCard>
               <MDBCardBody>
-                <MDBCardHeader className="form-header amber">
-                  Focus Regione
-                </MDBCardHeader>
+			  <MDBRow>
+              <MDBCol md="3" sm="12"> <h4 className="grey-text mt-4 mb-2">FOCUS PER REGIONE</h4> </MDBCol>
+			  </MDBRow>
                 <MDBRow>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="6" sm="12">
                     <MDBSelect
                       options={regions}
                       search
@@ -93,7 +93,8 @@ const Home = () => {
                       }}
                     />
                   </MDBCol>
-                  <MDBCol md="4" sm="12">
+				  <MDBCol md="2" sm="12"></MDBCol>
+                  <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       autoOk
                       value={startRegionDate}
@@ -103,7 +104,7 @@ const Home = () => {
                       theme={dateTheme}
                     />{" "}
                   </MDBCol>
-                  <MDBCol md="4" sm="12">
+                  <MDBCol md="2" sm="5">
                     <MDBDatePicker
                       autoOk
                       value={endRegionDate}
@@ -113,7 +114,6 @@ const Home = () => {
                       theme={dateTheme}
                     />
                   </MDBCol>
-                  <MDBCol md="4" sm="12"></MDBCol>
                 </MDBRow>
                 <RegionOverview
                   region={regions[regionIndex].value}
