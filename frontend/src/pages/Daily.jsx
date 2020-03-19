@@ -132,7 +132,7 @@ const Daily = () => {
 	  		hover
 	  		responsive
 			data={tableData} />
-			<div className="text-center">
+			<div className="text-center mb-4">
 			<MDBBtn color="cyan" onClick={() => {
 						setModal(!modal)
 					}}>Aggiungi</MDBBtn>
