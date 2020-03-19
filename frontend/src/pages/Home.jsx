@@ -93,18 +93,20 @@ const Home = () => {
       );
     });
   }, []);
- const toggle = (tab) => {
-	setActiveTab(tab)
+ const toggle = (newTab) => {
+	 if (tab === newTab) return;
+	setActiveTab(newTab)
  }
  return (
-	 <MDBContainer size="xl">
+	 <MDBContainer size="xl" >
 		 <MDBNav tabs color="cyan" className="mt-5">
 			 <MDBNavItem>
 				<MDBNavLink
+				link
 				to="#"
 				active={tab === "1"}
-				onClick={() => toggle("1")}
 				role="tab"
+				onClick={() => toggle("1")}
 				>
 					Focus Regione
 				</MDBNavLink>
@@ -112,9 +114,10 @@ const Home = () => {
 			 <MDBNavItem>
 				 <MDBNavLink
 				 to="#"
+				 link
 				 active={tab === "2"}
-				 onClick={() => toggle("2")}
 				 role="tab"
+				 onClick={() => toggle("2")}
 				 >
 					 Focus Italia
 				 </MDBNavLink>
@@ -122,10 +125,12 @@ const Home = () => {
 			 <MDBNavItem>
 				 <MDBNavLink
 				 to="#"
+				 link
 				 active={tab === "3"}
+				 role="tab"
 				 onClick={() => toggle("3")}
-				 role="tab">
-					 Delta giornaliero
+				  >
+					 Delta
 				 </MDBNavLink>
 			 </MDBNavItem>
 		 </MDBNav>
