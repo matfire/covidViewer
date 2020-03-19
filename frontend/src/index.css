@@ -27,16 +27,6 @@ code {
     color: #2de7ff !important;
 }
 
-a {
-    color: #00bcd4 !important;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-a:hover {
-    color: #2de7ff !important;
-}
 
 li.nav-item {
     text-transform: uppercase;
