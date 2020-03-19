@@ -42,6 +42,12 @@ const Navigation = () => {
                 <MDBNavItem active={history.location.pathname === "/daily"}>
                   <MDBNavLink to="/daily">Reports giornalieri</MDBNavLink>
                 </MDBNavItem>
+                <MDBNavItem>
+                <MDBBtn color="cyan" outline size="sm" onClick={() => {
+            localStorage.removeItem("jwt")
+            history.push("/login")
+					}}>Logout</MDBBtn>
+                </MDBNavItem>
             </MDBNavbarNav>
           </MDBCollapse>
         </MDBContainer>

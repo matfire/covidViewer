@@ -15,7 +15,9 @@ import {
   MDBCardBody,
   MDBSelect,
   MDBDatePicker,
-  MDBCardHeader
+  MDBCardHeader,
+  MDBTabPane, 
+  MDBTabContent
 } from "mdbreact";
 import { getRegions, getDailies } from "../client";
 import RegionOverview from "../components/regionOverview";
@@ -23,6 +25,21 @@ import TotalOverview from "../components/totalOverview";
 import moment from "moment";
 import "moment/locale/it";
 import DeltaOverview from "../components/deltaOverview";
+
+class TabsMaterial extends React.Component {
+	state = {
+	  activeItem: "1"
+	}
+	
+	toggle = tab => () => {
+	  if (this.state.activeItem !== tab) {
+	  this.setState({
+		activeItem: tab
+	  });
+	  }
+	}
+}	
+
 
 const dateTheme = {
 	palette: {
@@ -74,6 +91,7 @@ const Home = () => {
     });
   }, []);
   return (
+	  
     <MDBContainer size="xl">
       <MDBRow className="mt-5 pb-5">
         {regions.length > 0 && (

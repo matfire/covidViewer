@@ -27,17 +27,6 @@ code {
     color: #2de7ff !important;
 }
 
-a {
-    color: #00bcd4 !important;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-a:hover {
-    color: #2de7ff !important;
-}
-
 li.nav-item {
     text-transform: uppercase;
     font-size: 0.8em !important;
@@ -59,4 +48,10 @@ li.nav-item {
 
 #selectSearchInput {
     padding: 0.5rem !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: #00cee8 !important;
+    border: none !important;
+    border-radius: .0 !important;
 }
