@@ -130,7 +130,7 @@ const Home = () => {
 				 role="tab"
 				 onClick={() => toggle("3")}
 				  >
-					 Delta
+					 Delta giornaliero
 				 </MDBNavLink>
 			 </MDBNavItem>
 		 </MDBNav>
