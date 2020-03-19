@@ -27,11 +27,11 @@
 // 1. Fonts
 // ===========================================================================
 // Basic font properties
-$roboto-font-family : "Roboto",
+$roboto-font-family: "Roboto",
 sans-serif !default;
-$mdb-font-family : $roboto-font-family !default;
-$font-size-large : 1.5rem !default;
-$font-size-small : .9rem !default;
+$mdb-font-family: $roboto-font-family !default;
+$font-size-large: 1.5rem !default;
+$font-size-small: .9rem !default;
 // Blockquote
 $blockquote-padding-y: .5rem !default;
 $blockquote-padding-x: 1rem !default;
@@ -194,7 +194,7 @@ $navbar-breadcrumb-color: rgba(255,
 $pagination-active-transition: all .2s linear !default;
 $pagination-page-link-transition: all .3s linear !default;
 $pagination-page-link-font-size: .9rem !default;
-$pagination-page-link-font-size-lg: 1rem !default;
+$pagination-page-link-font-size-lg: 0.9rem !default;
 $pagination-page-link-font-size-sm: .8rem !default;
 $pagination-page-item-disabled-color: #868e96 !default;
 $pagination-page-link-color: #212529 !default;
