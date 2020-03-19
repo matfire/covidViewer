@@ -40,7 +40,7 @@ const Navigation = () => {
                   <MDBNavLink to="/region">Regioni</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem active={history.location.pathname === "/daily"}>
-                  <MDBNavLink to="/daily">Reports giornalieri</MDBNavLink>
+                  <MDBNavLink to="/daily">Dati giornalieri</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                 <MDBBtn color="cyan" outline size="sm" onClick={() => {
