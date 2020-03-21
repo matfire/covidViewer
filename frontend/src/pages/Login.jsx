@@ -31,6 +31,7 @@ const Login = () => {
                   e.preventDefault();
                   login(email, password).then(res => {
                     localStorage.setItem("jwt", res.data.token);
+                    localStorage.setItem("user",res.data.user)
                     history.push("/");
                   }).catch((re) => {
                     Swal.fire("Oops!", "Sembra che alcuni dati siano sbagliati 🤷", "error")

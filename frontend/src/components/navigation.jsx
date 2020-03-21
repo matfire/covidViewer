@@ -17,6 +17,8 @@ import {useHistory} from 'react-router-dom'
 const Navigation = () => {
   const history = useHistory()
   const [collapsed, setCollapsed] = useState("")
+  const user = JSON.parse(localStorage.getItem("user"))
+  const allowedUsers = ["mgassend@gmail.com", "bgassend@me.com", "lucia.taras@me.com"]
 
   const toggleCollapse = () => {
     setCollapsed((oldCol) => oldCol !== "navbar" ? "navbar" : "")
@@ -33,7 +35,9 @@ const Navigation = () => {
           <MDBNavbarToggler color="cyan" id="navbar" onClick={() => toggleCollapse()} />
           <MDBCollapse id="navbar" isOpen={collapsed} navbar>
             <MDBNavbarNav right>
-              <MDBNavItem active={history.location.pathname === "/"}>
+{ allowedUsers.indexOf(user.email) >= 0 && <React.Fragment>
+
+<MDBNavItem active={history.location.pathname === "/"}>
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem active={history.location.pathname === "/region"}>
@@ -42,6 +46,7 @@ const Navigation = () => {
                 <MDBNavItem active={history.location.pathname === "/daily"}>
                   <MDBNavLink to="/daily">Dati giornalieri</MDBNavLink>
                 </MDBNavItem>
+</React.Fragment>             }
                 <MDBNavItem>
                 <MDBBtn color="cyan" outline size="sm" onClick={() => {
             localStorage.removeItem("jwt")

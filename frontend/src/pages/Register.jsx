@@ -40,6 +40,7 @@ const Register = () => {
                       "success"
                     );
                     localStorage.setItem("jwt", res.data.token);
+                    localStorage.setItem("user",res.data.user)
                     history.push("/");
                   });
                 }}

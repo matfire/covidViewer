@@ -35,7 +35,7 @@ app.post("/register", async(req, res) => {
 
 	try {
 		let user = await User.create({email, password:crypted})
-		res.json({token: jwt.sign(JSON.stringify(user), SECRET)})
+		res.json({token: jwt.sign(JSON.stringify(user), SECRET), user:JSON.stringify("user")})
 	} catch (error) {
 		res.status(401).json({type:"error", message:"account already exists"})
 	}
@@ -50,7 +50,7 @@ app.post("/login", async(req, res) => {
 		return
 	}
 	if (bcrypt.compareSync(password, user.password)) {
-		res.json({token: jwt.sign(JSON.stringify(user), SECRET)})
+		res.json({token: jwt.sign(JSON.stringify(user), SECRET), user:JSON.stringify(user)})
 	} else {
 		res.status(401).json({type:"error", message:"wrong credentials"})
 	}
