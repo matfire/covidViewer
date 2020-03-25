@@ -35,7 +35,7 @@ const Navigation = () => {
           <MDBNavbarToggler color="cyan" id="navbar" onClick={() => toggleCollapse()} />
           <MDBCollapse id="navbar" isOpen={collapsed} navbar>
             <MDBNavbarNav right>
-{ allowedUsers.indexOf(user.email) >= 0 && <React.Fragment>
+{ user && user.email && allowedUsers.indexOf(user.email) >= 0 && <React.Fragment>
 
 <MDBNavItem active={history.location.pathname === "/"}>
                   <MDBNavLink to="/">Home</MDBNavLink>

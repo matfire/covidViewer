@@ -6,7 +6,7 @@ import Home from './pages/Home'
 import Regions from './pages/Regions'
 import Daily from './pages/Daily'
 
-const AuthedRoute = ({path, exact, component, prot}) => {
+const AuthedRoute = ({path, exact, component, prot = false}) => {
 	if (prot) {
 		let user = localStorage.getItem("user")
 		if (user) {

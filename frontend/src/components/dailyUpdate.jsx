@@ -38,6 +38,7 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 			setPositives(daily.positives)
 			setRea(daily.rea)
 			setTampons(daily.tampons)
+			setIsolated(daily.isolated)
 
 		})
 	}, [daily])
@@ -64,22 +65,22 @@ const DailyUpdate = ({isOpen, toggle, update, daily}) => {
 				<MDBSelect getValue={(v) => setRegion(v)} selected="Scegli la regione"  options={regions} search searchLabel="Cerca"/>
 				<MDBRow>
 					<MDBCol md="6" sm="12">
-						<MDBInput value={positives} type="number" getValue={(v) => setPositives(v)} label="Positivi" />
-					</MDBCol>
-					<MDBCol md="6" sm="12">
-						<MDBInput value={isolated} type="number" getValue={(v) => setIsolated(v)} label="Isolamento" />
-					</MDBCol>
-					<MDBCol md="6" sm="12">
 						<MDBInput value={admissions} type="number" getValue={(v) => setAdmissions(v)} label="Ricoverati" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
 						<MDBInput value={rea} type="number" getValue={(v) => setRea(v)} label="Rea" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
-						<MDBInput value={dead} type="number" getValue={(v) => setDead(v)} label="Deceduti" />
+						<MDBInput value={isolated} type="number" getValue={(v) => setIsolated(v)} label="Isolamento" />
+					</MDBCol>
+					<MDBCol md="6" sm="12">
+						<MDBInput value={positives} type="number" getValue={(v) => setPositives(v)} label="Positivi" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
 						<MDBInput value={healed} type="number" getValue={(v) => setHealed(v)} label="Guariti" />
+					</MDBCol>
+					<MDBCol md="6" sm="12">
+						<MDBInput value={dead} type="number" getValue={(v) => setDead(v)} label="Deceduti" />
 					</MDBCol>
 					<MDBCol md="6" sm="12">
 						<MDBInput value={tampons} type="number" getValue={(v) => setTampons(v)} label="Tamponi" />
