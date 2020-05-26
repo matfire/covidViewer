@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { MDBContainer, MDBTable, MDBTableHead, MDBTableBody, MDBBtn, MDBIcon, MDBDataTable,MDBRow,MDBCol } from 'mdbreact'
 import { useEffect } from 'react'
-import { getDailies, updateDaily } from '../client'
+import { getDailies, updateDaily, deleteDaily } from '../client'
 import DailyModal from '../components/dailyModal'
 import * as moment from 'moment'
 import DailyUpdate from '../components/dailyUpdate'
+import Swal from "sweetalert2";
+
 let data = {
 	columns: [
 		{
@@ -55,6 +57,11 @@ let data = {
 			label:"",
 			field:"update",
 			sort:"disabled"
+		},
+		{
+			label:"",
+			field:"delete",
+			sort:"disabled"
 		}
 	],
 	rows: []
@@ -84,7 +91,12 @@ const Daily = () => {
 				update:<MDBIcon icon="edit" size="lg" className="grey-text" onClick={() => {
 					setIndex(index)
 					setUpdateModal(!updateModal)
-				}} > </MDBIcon>
+				}} > </MDBIcon>,
+				delete: <MDBIcon icon="trash" size="lg" className="grey-text" onClick={() => {
+					deleteDaily(e._id).then(() => {
+						Swal.fire("Cancellato!", "Daje!", "success")
+					})
+				}} ></MDBIcon>
 			})
 		})
 		return newData
@@ -137,46 +149,6 @@ const Daily = () => {
 						setModal(!modal)
 					}}>Aggiungi</MDBBtn>
 			</div>
-			{/* <MDBTable>
-				<MDBTableHead>
-					<tr>
-						<th>Data</th>
-						<th>Regione</th>
-						<th>Positivi</th>
-						<th>Isolamento</th>
-						<th>Ricoverati</th>
-						<th>Rea</th>
-						<th>Deceduti</th>
-						<th>Guariti</th>
-						<th>Tamponi</th>
-						<th></th>
-					</tr>
-				</MDBTableHead>
-				<MDBTableBody>
-					{dailies.map((d, index) => (
-						<tr key={d._id}>
-							<td>{moment(d.date).format("DD/MM/YYYY")}</td>
-					<td>{d.region.name}</td>
-					<td>{d.positives}</td>
-					<th>{d.isolated || 0}</th>
-					<td>{d.admissions}</td>
-					<td>{d.rea}</td>
-					<td>{d.dead}</td>
-					<td>{d.healed}</td>
-					<td>{d.tampons}</td>
-					<td><MDBBtn floating flat color="primary" onClick={() => {
-								setIndex(index)
-								setUpdateModal(!updateModal)
-							}} ><MDBIcon icon="edit" size="3x" /></MDBBtn></td>
-					</tr>
-					))}
-					<tr>
-					<th colSpan="9" className="text-center"><MDBBtn color="primary" onClick={() => {
-						setModal(!modal)
-					}}>+</MDBBtn></th>
-					</tr>
-				</MDBTableBody>
-			</MDBTable> */}
 		</MDBCol>
 			</MDBRow>
 		</MDBContainer>

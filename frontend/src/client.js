@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-	baseURL:  process.env.NODE_ENV === "production" ? "https://covid-dun.now.sh" : "http://localhost:4000"	
+	baseURL:  process.env.NODE_ENV === "production" ? "https://covid-dun.now.sh" : "https://covid-dun.now.sh"	
 })
 
 
@@ -65,4 +65,12 @@ const updateDaily = (id, data) => {
 	})
 }
 
-export {login, register, updatePassword, getRegions, createRegion, updateRegion, getDailies, createDaily, updateDaily}
+const deleteDaily = (id) => {
+	return api.delete(`/daily/${id}`, {
+		headers: {
+			Authorization: localStorage.getItem("jwt")
+		}
+	})
+}
+
+export {login, register, updatePassword, getRegions, createRegion, updateRegion, getDailies, createDaily, updateDaily, deleteDaily}

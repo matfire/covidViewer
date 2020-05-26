@@ -36,7 +36,7 @@ const DailyModal = ({isOpen, toggle, update}) => {
 		<MDBModal isOpen={isOpen}toggle={() => toggle()}>
 			<MDBModalBody>
 			<h4 className="text-center mt-3 cyan-text">Aggiungi report</h4>
-				<MDBDatePicker autoOk getValue={(value) => setDate(value)} locale={moment.locale('it')} 
+				<MDBDatePicker autoOk value={date} getValue={(value) => setDate(value)} locale={moment.locale('it')} 
 				cancelLabel='Cancella'
 				theme={{
   palette: {
@@ -84,6 +84,7 @@ const DailyModal = ({isOpen, toggle, update}) => {
 						return
 					}
 					createDaily({date, dead, admissions, healed, positives, rea, tampons, region, isolated}).then(() => {
+						setDate(new Date())
 						update()
 						toggle()
 					})

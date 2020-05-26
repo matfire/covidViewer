@@ -123,6 +123,11 @@ app.patch("/daily/:id", isAuthenticated, async(req, res) => {
 	res.json({daily})
 })
 
+app.delete("/daily/:id", isAuthenticated, async(req, res) => {
+	await Daily.findByIdAndRemove(req.params.id)
+	res.json({success:true})
+})
+
 
 app.get("/", (req, res) => {
 	res.send('🚁')
